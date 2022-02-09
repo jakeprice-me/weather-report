@@ -27,7 +27,7 @@ log_path: /tmp
 
 ## Output
 
-The script will output the following message and also post it to your Telegram bot.
+The script will send a message in the following format to the Telegram bot specified in `config.yml`.
 
 > Weather Report
 > Wednesday 09 February 2022

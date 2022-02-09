@@ -92,8 +92,6 @@ def main():
 - Moon is {moon_phase}% full.
 """
 
-    print(weather_report)
-
     # Telegram API Configuration:
     bot_token = config_file["telegram_bot_token"]
     base_url = config_file["telegram_base_url"]
