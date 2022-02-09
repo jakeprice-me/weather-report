@@ -1,0 +1,8 @@
+latitude: -71.413177
+longitude: 21.144019
+openweather_api_token: 3lc7bnsiutp6iypfmi26lt9b40fdi1bv
+openweather_base_url: https://api.openweathermap.org
+telegram_base_url: https://api.telegram.org
+telegram_bot_chat_id: 7290765823
+telegram_bot_token: 5327221129:HPsqtlsXDX2d8au2LsvdN88yqvpWjQLw9ML
+log_path: /tmp
