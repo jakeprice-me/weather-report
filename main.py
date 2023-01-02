@@ -48,6 +48,7 @@ def main():
     hours_temp = []
     hours_feels = []
     hours_weather = []
+    hours_rain_chance = []
 
     for hour in hourly:
 
@@ -63,11 +64,13 @@ def main():
         hour_weather = hour["weather"]
         hours_weather.append(hour_weather[0]["description"].capitalize())
 
+        hour_rain_chance = round(float(hour["pop"]) * 100)
+        hours_rain_chance.append(hour_rain_chance)
+
     # Store values:
     date = datetime.datetime.fromtimestamp(daily["dt"]).strftime("%A %d %B %Y")
     sunrise = datetime.datetime.fromtimestamp(daily["sunrise"]).strftime("%H:%M")
     sunset = datetime.datetime.fromtimestamp(daily["sunset"]).strftime("%H:%M")
-    moon_phase = daily["moon_phase"]
     humidity = daily["humidity"]
     wind_speed = round(float(daily["wind_speed"]) * 2.236936)  # Convert to MPH
     max_temp = int(daily["temp"]["max"])
@@ -75,36 +78,38 @@ def main():
     weather = daily["weather"][0]["description"].capitalize()
 
     weather_report = f"""
-<b>Weather Report</b>
-<i>{date}</i>
+*{date}*
 
 - Mainly {weather}.
 - High of {max_temp}°C. Low of {min_temp}°C.
-  - {hours[0]}: {hours_temp[0]}°C (<i>{hours_feels[0]}°C</i>) {hours_weather[0]}
-  - {hours[5]}: {hours_temp[5]}°C (<i>{hours_feels[5]}°C</i>) {hours_weather[5]}
-  - {hours[10]}: {hours_temp[10]}°C (<i>{hours_feels[10]}°C</i>) {hours_weather[10]}
-  - {hours[15]}: {hours_temp[15]}°C (<i>{hours_feels[15]}°C</i>) {hours_weather[15]}
-  - {hours[20]}: {hours_temp[20]}°C (<i>{hours_feels[20]}°C</i>) {hours_weather[20]}
-  - {hours[22]}: {hours_temp[22]}°C (<i>{hours_feels[22]}°C</i>) {hours_weather[22]}
+  - {hours[0]}: {hours_temp[0]}°C (_{hours_feels[0]}°C_) {hours_weather[0]}, {hours_rain_chance[0]}% 🌧
+  - {hours[5]}: {hours_temp[5]}°C (_{hours_feels[5]}°C_) {hours_weather[5]}, {hours_rain_chance[5]}% 🌧
+  - {hours[10]}: {hours_temp[10]}°C (_{hours_feels[10]}°C_) {hours_weather[10]}, {hours_rain_chance[10]}% 🌧
+  - {hours[15]}: {hours_temp[15]}°C (_{hours_feels[15]}°C_) {hours_weather[15]}, {hours_rain_chance[15]}% 🌧
+  - {hours[20]}: {hours_temp[20]}°C (_{hours_feels[20]}°C_) {hours_weather[20]}, {hours_rain_chance[20]}% 🌧
+  - {hours[22]}: {hours_temp[22]}°C (_{hours_feels[22]}°C_) {hours_weather[22]}, {hours_rain_chance[22]}% 🌧
 - Wind speed of {wind_speed}mph
 - Humidity at {humidity}%
 - Sun rises at {sunrise}. Sets at {sunset}.
-- Moon is {moon_phase}% full.
 """
 
-    # Telegram API Configuration:
-    bot_token = config_file["telegram_bot_token"]
-    base_url = config_file["telegram_base_url"]
-    chat_id = str(config_file["telegram_bot_chat_id"])
-    api_url = f"/bot{bot_token}/sendMessage"
+    # Gotify API Configuration:
+    token = config_file["gotify_app_token"]
+    base_url = config_file["gotify_base_url"]
+    api_url = f"/message?token={token}"
     api_payload = {
-        "chat_id": chat_id,
-        "parse_mode": "HTML",
-        "text": f"{weather_report}",
+        "priority": 4,
+        "title": "Weather Report",
+        "message": f"{weather_report}",
+        "extras": {
+          "client::display": {
+            "contentType": "text/markdown"
+          },
+        },
     }
     api_endpoint = base_url + api_url
 
-    # Telegram API call:
+    # Gotify API call:
     response = requests.post(
         api_endpoint,
         headers={"Content-Type": "application/json"},
