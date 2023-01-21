@@ -82,12 +82,30 @@ def main():
 
 - Mainly {weather}.
 - High of {max_temp}°C. Low of {min_temp}°C.
-  - {hours[0]}: {hours_temp[0]}°C (_{hours_feels[0]}°C_) {hours_weather[0]}, {hours_rain_chance[0]}% 🌧
-  - {hours[5]}: {hours_temp[5]}°C (_{hours_feels[5]}°C_) {hours_weather[5]}, {hours_rain_chance[5]}% 🌧
-  - {hours[10]}: {hours_temp[10]}°C (_{hours_feels[10]}°C_) {hours_weather[10]}, {hours_rain_chance[10]}% 🌧
-  - {hours[15]}: {hours_temp[15]}°C (_{hours_feels[15]}°C_) {hours_weather[15]}, {hours_rain_chance[15]}% 🌧
-  - {hours[20]}: {hours_temp[20]}°C (_{hours_feels[20]}°C_) {hours_weather[20]}, {hours_rain_chance[20]}% 🌧
-  - {hours[22]}: {hours_temp[22]}°C (_{hours_feels[22]}°C_) {hours_weather[22]}, {hours_rain_chance[22]}% 🌧
+  - {hours[0]}:
+    - {hours_temp[0]}°C feels {hours_feels[0]}°C
+    - {hours_weather[0]}
+    - {hours_rain_chance[0]}% chance of rain
+  - {hours[5]}:
+    - {hours_temp[5]}°C feels {hours_feels[5]}°C
+    - {hours_weather[5]}
+    - {hours_rain_chance[5]}% chance of rain
+  - {hours[10]}:
+    - {hours_temp[10]}°C feels {hours_feels[10]}°C
+    - {hours_weather[10]}
+    - {hours_rain_chance[10]}% chance of rain
+  - {hours[15]}:
+    - {hours_temp[15]}°C feels {hours_feels[15]}°C
+    - {hours_weather[15]}
+    - {hours_rain_chance[15]}% chance of rain
+  - {hours[20]}:
+    - {hours_temp[20]}°C feels {hours_feels[20]}°C
+    - {hours_weather[20]}
+    - {hours_rain_chance[20]}% chance of rain
+  - {hours[22]}:
+    - {hours_temp[22]}°C feels {hours_feels[22]}°C
+    - {hours_weather[22]}
+    - {hours_rain_chance[22]}% chance of rain
 - Wind speed of {wind_speed}mph
 - Humidity at {humidity}%
 - Sun rises at {sunrise}. Sets at {sunset}.
