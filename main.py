@@ -10,14 +10,12 @@ import yaml
 
 
 def main():
-
     """
     Main functionality
     """
 
     # Configuration file:
     with open("config.yml", "r", encoding="utf-8") as config:
-
         # Load config file:
         config_file = yaml.safe_load(config)
 
@@ -51,7 +49,6 @@ def main():
     hours_rain_chance = []
 
     for hour in hourly:
-
         hour_time = datetime.datetime.fromtimestamp(hour["dt"]).strftime("%-I %p")
         hours.append(hour_time)
 
@@ -78,7 +75,7 @@ def main():
     weather = daily["weather"][0]["description"].capitalize()
 
     weather_report = f"""
-*{date}*
+<b>{date}</b>
 
 - Mainly {weather}.
 - High of {max_temp}°C. Low of {min_temp}°C.
@@ -111,19 +108,17 @@ def main():
 - Sun rises at {sunrise}. Sets at {sunset}.
 """
 
-    # Gotify API Configuration:
-    token = config_file["gotify_app_token"]
-    base_url = config_file["gotify_base_url"]
-    api_url = f"/message?token={token}"
+    # Telegram API Configuration:
+    bot_token = config_file["telegram_bot_token"]
+    base_url = config_file["telegram_base_url"]
+    chat_id = str(config_file["telegram_bot_chat_id"])
+    api_url = f"/bot{bot_token}/sendMessage"
+
+    # Setup the notification message:
     api_payload = {
-        "priority": 4,
-        "title": "Weather Report",
-        "message": f"{weather_report}",
-        "extras": {
-          "client::display": {
-            "contentType": "text/markdown"
-          },
-        },
+        "chat_id": chat_id,
+        "parse_mode": "HTML",
+        "text": f"{weather_report}",
     }
     api_endpoint = base_url + api_url
 
@@ -131,7 +126,7 @@ def main():
     response = requests.post(
         api_endpoint,
         headers={"Content-Type": "application/json"},
-        data=json.dumps(api_payload),
+        json=api_payload,
     )
 
 

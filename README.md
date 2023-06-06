@@ -1,6 +1,6 @@
 # Weather Report
 
-A personal script that uses the [OpenWeatherMap](https://openweathermap.org/api/one-call-api) API to send a daily weather report to [Gotify](https://gotify.net/).
+A personal script that uses the [OpenWeatherMap](https://openweathermap.org/api/one-call-api) API to send a daily weather report to Telegram.
 
 ## Usage
 
