@@ -16,20 +16,37 @@ You must create a file named `config.yml` which contains _real_ key/values below
 
 ## Output
 
-The script will send a message in the following format to a Gotify app specified in `config.yml`.
+The script will send a message in the following format to Telegram.
 
-> Weather Report
-> Wednesday 09 February 2022
+> Wednesday 07 June 2023
 > 
-> - Mainly Light rain.
-> - High of 10°C. Low of 7°C.
->   - 7 AM: 8°C (4°C) Broken clouds, 0% 🌧
->   - 12 PM: 9°C (7°C) Overcast clouds, 0% 🌧
->   - 5 PM: 9°C (8°C) Light rain, 100% 🌧
->   - 10 PM: 7°C (6°C) Overcast clouds, 0% 🌧
->   - 3 AM: 5°C (3°C) Overcast clouds, 0% 🌧
->   - 5 AM: 4°C (2°C) Overcast clouds, 0% 🌧
-> - Wind speed of 18mph
-> - Humidity at 80%
-> - Sun rises at 07:25. Sets at 17:01.
+> - Mainly Scattered clouds.
+> - High of 19°C. Low of 6°C.
+>   - 7 AM:
+>     - 10°C feels 9°C
+>     - Overcast clouds
+>     - 0% chance of rain
+>   - 12 PM:
+>     - 17°C feels 17°C
+>     - Scattered clouds
+>     - 0% chance of rain
+>   - 5 PM:
+>     - 18°C feels 18°C
+>     - Scattered clouds
+>     - 0% chance of rain
+>   - 10 PM:
+>     - 8°C feels 6°C
+>     - Clear sky
+>     - 0% chance of rain
+>   - 3 AM:
+>     - 6°C feels 3°C
+>     - Few clouds
+>     - 0% chance of rain
+>   - 5 AM:
+>     - 6°C feels 3°C
+>     - Few clouds
+>     - 0% chance of rain
+> - Wind speed of 12mph
+> - Humidity at 69%
+> - Sun rises at 04:42. Sets at 21:13.
 
